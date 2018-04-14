@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("Test", "Bypass Main Screen"); //Test for console log
-        Intent welcomeIntent = new Intent(this, Welcome_Screen.class);
+        Intent welcomeIntent = new Intent(this, WelcomeScreen.class);
         startActivity(welcomeIntent);
     }
 }

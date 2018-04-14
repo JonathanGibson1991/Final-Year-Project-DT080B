@@ -2,19 +2,18 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/personalActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jonat.samra.PersonalInfo">
-
+    tools:context="com.example.jonat.samra.RecordDisplay">
 
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/textView"
         android:layout_width="320dp"
         android:layout_height="45dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
+        android:text="Personal Info"
         android:textAlignment="center"
         android:textColor="@android:color/background_dark"
         android:textSize="24sp"
@@ -23,57 +22,88 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/nameField"
         android:layout_width="320dp"
         android:layout_height="45dp"
         android:layout_marginTop="25dp"
-        android:hint="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <EditText
+    <TextView
         android:id="@+id/ageField"
         android:layout_width="320dp"
         android:layout_height="42dp"
         android:layout_marginTop="25dp"
-        android:hint="Age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameField" />
 
-    <EditText
+    <TextView
         android:id="@+id/addressField"
         android:layout_width="320dp"
         android:layout_height="42dp"
         android:layout_marginTop="25dp"
-        android:hint="Address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageField" />
 
-    <EditText
+    <TextView
         android:id="@+id/bloodTypeField"
         android:layout_width="320dp"
         android:layout_height="42dp"
         android:layout_marginTop="25dp"
-        android:hint="Blood Type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressField" />
 
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-2dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/nameField"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ageLabel"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Age"
+        app:layout_constraintBottom_toTopOf="@+id/ageField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/addressLabel"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Address"
+        app:layout_constraintBottom_toTopOf="@+id/addressField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/bloodTypeLabel"
+        android:layout_width="321dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Blood Type"
+        app:layout_constraintBottom_toTopOf="@+id/bloodTypeField"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
