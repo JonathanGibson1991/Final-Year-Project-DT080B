@@ -16,8 +16,8 @@ import java.util.List;
 @Dao
 public interface UserInfoDao {
 
-    @Query("SELECT * FROM userinfo")
-    List<UserInfo> getAll();
+    @Query("SELECT * FROM userinfo") //TODO check using all db titles
+    List<UserInfo> getAll(); //This Query is created to access all of the user info and is called
 
     @Query("SELECT * FROM userinfo WHERE uuid = :uuid LIMIT 1")
     UserInfo getByCardId(String uuid);

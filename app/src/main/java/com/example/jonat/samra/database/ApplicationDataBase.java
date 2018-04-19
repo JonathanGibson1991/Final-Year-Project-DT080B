@@ -16,10 +16,11 @@ import com.example.jonat.samra.database.pojo.UserInfo;
 @Database(entities = {UserInfo.class}, version = 1)
 public abstract class ApplicationDataBase extends RoomDatabase {
 
-    private static ApplicationDataBase INSTANCE;
+    private static ApplicationDataBase INSTANCE; //Creating a database instance called ApplicationDataBase
 
-    public abstract UserInfoDao userInfoDao();
+    public abstract UserInfoDao userInfoDao(); //Creates an abstract method to access the SQL queries in the UserInfoDao Interface class
 
+    //The below is the setting up of the room persistence database instance and initializes it
     public static ApplicationDataBase getAppDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE =
