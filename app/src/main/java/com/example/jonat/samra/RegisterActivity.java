@@ -27,14 +27,15 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
     }
 
-    private void setUpForegroundDispatchSystem()
+
+    private void setUpForegroundDispatchSystem() //The foreground dispatch system is used to set up and configure the NFC adapter of the local device
     {
         this.nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         Bundle opts = new Bundle();
-        opts.putInt(NfcAdapter.EXTRA_READER_PRESENCE_CHECK_DELAY, 5000);
+        opts.putInt(NfcAdapter.EXTRA_READER_PRESENCE_CHECK_DELAY, 5000); //Sets a delay on each adapter
 
         int flags = NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
-        flags |= NfcAdapter.FLAG_READER_NFC_A;
+        flags += NfcAdapter.FLAG_READER_NFC_A;
         this.nfcAdapter.enableReaderMode(this, new RegNfcCallBack(), flags, opts);
     }
 

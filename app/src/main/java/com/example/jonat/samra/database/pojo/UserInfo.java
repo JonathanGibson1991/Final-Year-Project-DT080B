@@ -3,8 +3,8 @@ package com.example.jonat.samra.database.pojo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "userinfo")
-public class UserInfo {
+@Entity(tableName = "userinfo") //Used to create a table entity called userinfo this can then be
+public class UserInfo {         //accessed in the Data Access Object class
 
     @PrimaryKey
     private int id;

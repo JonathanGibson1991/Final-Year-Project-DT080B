@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.jonat.samra.PersonalInfo">
 
-
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="320dp"
@@ -31,7 +30,7 @@
         android:hint="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
     <EditText
         android:id="@+id/ageField"

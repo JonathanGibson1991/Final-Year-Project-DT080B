@@ -6,6 +6,8 @@ import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ public class RecordDisplay extends AppCompatActivity {
     TextView ageField = null;
     TextView addressField = null;
     TextView bloodTypeField = null;
+    Button emailButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class RecordDisplay extends AppCompatActivity {
         this.ageField = findViewById(R.id.ageField);
         this.addressField = findViewById(R.id.addressField);
         this.bloodTypeField = findViewById(R.id.bloodTypeField);
+        this.emailButton = findViewById(R.id.emailButton);
     }
 
     @Override
@@ -48,7 +52,7 @@ public class RecordDisplay extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(this, "onResume() - ACTION_TAG_DISCOVERED", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "onResume() - ACTION_TAG_DISCOVERED", Toast.LENGTH_SHORT).show();
 
         Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         String tagId = getTagId(tag);
@@ -57,11 +61,16 @@ public class RecordDisplay extends AppCompatActivity {
             Log.i("Test", tagId.toString() +" -- " + tag.toString());
             return;
         }
-
+//
         List<UserInfo> dbAll = db.userInfoDao().getAll();
         Log.i("Test", "ALL DB = " + dbAll.toString());
         Log.i("Test", "TAG ID = " + tagId);
-        UserInfo userInfo = db.userInfoDao().getByCardId(tagId);
+        UserInfo encryptedUserInfo = db.userInfoDao().getByCardId(tagId);
+        if(encryptedUserInfo == null){
+            Toast.makeText(this, "Card not recognised, TRY AGAIN", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final UserInfo userInfo = PersonalInfo.decryptUser(encryptedUserInfo, PersonalInfo.myUUID);
 
         if (userInfo == null) {
             toastInvlaidTag(tagId);
@@ -76,6 +85,15 @@ public class RecordDisplay extends AppCompatActivity {
         addressField.setText(userInfo.getAddress());
         bloodTypeField.setText(userInfo.getBloodType());
 
+        //TODO place this in an email button
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendEmail(userInfo.toString());
+            }
+        });
+
+
     }
 
     private void toastInvlaidTag(String tagId) {
@@ -87,6 +105,18 @@ public class RecordDisplay extends AppCompatActivity {
         }
         Toast.makeText(this, "Card not recognised", Toast.LENGTH_SHORT).show();
         this.startActivity(validationIntent);
+    }
+
+    private void sendEmail(String userInfo){
+        Intent email = new Intent(Intent.ACTION_SEND);
+        //email.putExtra(Intent.EXTRA_EMAIL, new String[]{ });
+        email.putExtra(Intent.EXTRA_SUBJECT, "Medical Records");
+        email.putExtra(Intent.EXTRA_TEXT, userInfo.toString());
+
+        //need this to prompts email client only
+        email.setType("message/rfc822");
+
+        startActivity(Intent.createChooser(email, "Choose an Email client :"));
     }
 }
 
